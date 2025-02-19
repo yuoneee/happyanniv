@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: #e0f7ff;
+            color: #003366;
+        }
+
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .wrapper {
+            height: 400px;
+            width: 550px;
+            background-color: #3760C9;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            overflow: visible;
+        }
+
+        .lid {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-right: 275px solid transparent;
+            border-bottom: 200px solid transparent;
+            border-left: 275px solid transparent;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .lid.one {
+            border-top: 200px solid #658ced;
+            transform: rotateX(0deg);
+            z-index: 3;
+        }
+
+        .lid.two {
+            border-top: 200px solid royalblue;
+            transform: rotateX(90deg);
+            z-index: 1;
+        }
+
+        .envelope {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            border-top: 200px solid transparent;
+            border-right: 275px solid #C4DFF0;
+            border-bottom: 200px solid #C4DFF0;
+            border-left: 275px solid #a4d4f2;
+            z-index: 2;
+        }
+        .letter {
+            position: absolute;
+            width: 85%;
+            background: linear-gradient(to bottom, #d6c7b8, #c4b3a5); /* Warm beige gradient */
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            line-height: 1.9;
+            color: #2d2d2d;
+            border: 2px solid #b08d76;
+        }
+
+
+        .letter p {
+            margin-bottom: 10px;
+        }
+
+        .letter::before {
+            content: "💌";
+            font-size: 36px;
+            display: block;
+            margin-bottom: 10px;
+            color: #ff6699;
+        }
+
+        .envelope.open .lid.one {
+            transform: rotateX(-90deg);
+        }
+
+        .open .letter {
+            opacity: 1;
+            z-index: 3;
+            transform: translateY(-50px) scale(1.02);
+        }
+
+
+
+
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        footer:hover {
+            background-color: #002244;
+            color: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="memories.html">Memories</a>
+        <a href="music.html">Music</a>
+        <a href="letter.html">Letter</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Love Letter 💌</h1>
+        <div class="wrapper" id="envelope">
+            <div class="lid one"></div>
+            <div class="lid two"></div>
+            <div class="envelope"></div>
+            <div class="letter" id="letter">
+                <p>My dearest Love,</p>
+                <p>Happy Anniversary to us, my love! I know this past year hasn’t been easy for either of us. We've been through a lot, and I know that most of it was because of me. Thank you for staying by my side. I love you so much.</p>                <p> - Juan</p>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        Happy Anniversary, my love! 💙
+    </footer>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const letter = document.getElementById('letter');
+
+
+        envelope.addEventListener('click', function () {
+            envelope.classList.toggle('open');
+
+            if (envelope.classList.contains('open')) {
+                const letterHeight = letter.offsetHeight;
+                const envelopeHeight = envelope.offsetHeight;
+
+                const translateY = -(letterHeight / 2) + (envelopeHeight / 2);
+
+                letter.style.transform = `translateY(${translateY}px)`;
+                letter.style.opacity = "1";
+            } else {
+                letter.style.transform = `translateY(0%)`;
+                letter.style.opacity = "0";
+            }
+        });
+    </script>
+</body>
+</html>

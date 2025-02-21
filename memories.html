@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7ff;
+            font-family: 'Ropa Sans', sans-serif;
+            color: #003366; /* Set default text color for better readability */
+
+        }
+
+        .container {
+            padding: 20px 20px 0; /* Removed bottom padding */
+            text-align: center;
+        }
+
+        h1 {
+        font-size: 2.5em;
+        color: #003366;
+        margin-top: 60px; /* Add padding above the heading */
+    }
+
+        p {
+            font-size: 1.2em;
+            color: #003366;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0; /* Removes extra space below */
+        }
+
+
+        .slider {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 20px; /* Add spaces between images */
+            padding-bottom: 10px;
+        }
+
+        .slides::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        .slides::-webkit-scrollbar-thumb {
+            background: black;
+            border-radius: 10px;
+        }
+
+        .slides::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slides > div {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            width: 500px; /* Make images bigger */
+            height: 400px; /* Make images bigger */
+            border-radius: 15px;
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slides img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .description {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        .description .date {
+            display: block;
+            font-size: 0.8em;
+            color: #ddd;
+            margin-top: 2px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="memories.html">Memories</a>
+        <a href="music.html">Music</a>
+        <a href="letter.html">Letter</a>
+    </nav>
+
+    <div class="container">
+        <h1>Garden Gallery📸</h1>
+
+        <div class="slider">
+            <div class="slides">
+                <div onclick="openModal('vday1.jpg')">
+                    <img src="vday1.jpg" alt="Valentine's Day 2024">
+                    <div class="description">
+                        Happy Valentines Day!
+                        <span class="date">February 14, 2024</span>
+                    </div>
+                    
+                </div>
+                
+                <div onclick="openModal('yes.png')">
+                    <img src="yes.png" alt="The Day She Said Yes">
+                    <div class="description">
+                        THE DAY SHE SAID YES!
+                        <span class="date">February 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month1.jpg')">
+                    <img src="month1.jpg" alt="Happy 1 Month">
+                    <div class="description">
+                        Happy 1 month, my love!
+                        <span class="date">March 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month2.jpg')">
+                    <img src="month2.jpg" alt="Happy 2 Months">
+                    <div class="description">
+                        Happy 2 months, my love!
+                        <span class="date">April 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month3.jpg')">
+                    <img src="month3.jpg" alt="Happy 3 Months">
+                    <div class="description">
+                        Happy 3 months, my love!
+                        <span class="date">May 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month4.jpg')">
+                    <img src="month4.jpg" alt="Happy 4 Months">
+                    <div class="description">
+                        Happy 4 months, my love!
+                        <span class="date">June 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month5.jpg')">
+                    <img src="month5.jpg" alt="Happy 5 Months">
+                    <div class="description">
+                        Happy 5 months, my love!
+                        <span class="date">July 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month6.jpg')">
+                    <img src="month6.jpg" alt="Happy 6 Months">
+                    <div class="description">
+                        Happy 6 months, my love!
+                        <span class="date">August 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month7.jpg')">
+                    <img src="month7.jpg" alt="Happy 7 Months">
+                    <div class="description">
+                        Happy 7 months, my love!
+                        <span class="date">September 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month8.jpg')">
+                    <img src="month8.jpg" alt="Happy 8 Months">
+                    <div class="description">
+                        Happy 8 months, my love!
+                        <span class="date">October 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month9.jpg')">
+                    <img src="month9.jpg" alt="Happy 9 Months">
+                    <div class="description">
+                        Happy 9 months, my love!
+                        <span class="date">November 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month10.jpg')">
+                    <img src="month10.jpg" alt="Happy 10 Months">
+                    <div class="description">
+                        Happy 10 months, my love!
+                        <span class="date">December 19, 2024</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('cf1.jpg')">
+                    <img src="cf1.jpg" alt="Happy 11 Months">
+                    <div class="description">
+                        Happy 11 months, my love!
+                        <span class="date">January 19, 2025</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('vday2.jpg')">
+                    <img src=vday2.jpg" alt="Happy Valentines 2025">
+                    <div class="description">
+                        Happy Valentines Day!
+                        <span class="date">February 14, 2025</span>
+                    </div>
+                </div>
+                
+                <div onclick="openModal('month12.jpg')">
+                    <img src="month12.jpg" alt="Happy Anniversary">
+                    <div class="description">
+                        Happy Anniversary, my love!
+                        <span class="date">February 19, 2025</span>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+
+    </div>
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img id="modal-img" class="modal-content">
+    </div>
+
+    <footer>
+        Happy Anniversary, my love! 💙
+    </footer>
+
+    <script>
+        function openModal(src) {
+            document.getElementById("modal").style.display = "flex";
+            document.getElementById("modal-img").src = src;
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+</body>
+</html>

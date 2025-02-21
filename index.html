@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Anniversary!</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensures full height */
+}
+        body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+
+        .container {
+            flex: 1;
+
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* text-align: center; */
+        }
+
+        .profile-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .post-box {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .post-box textarea {
+            width: 100%;
+            border: none;
+            padding: 10px;
+            resize: none;
+            font-size: 1em;
+            border-radius: 5px;
+            background: #f0f2f5;
+            height: 80px;
+        }
+
+        .post-box button {
+            background: #1877f2;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .post-box button:hover {
+            background: #145dbf;
+        }
+
+        .post {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .post-content img {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+        .post-date {
+        font-size: 0.9em;
+        color: #65676b;
+    }
+    footer {
+    background-color: #003366;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: auto;
+    width: 100%; /* Ensures full width */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+footer:hover {
+    background-color: #002244;
+    color: royalblue;
+}
+
+/* Modal styles */
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+    <script>
+        function addPost() {
+            const textArea = document.querySelector('.post-box textarea');
+            const postContent = textArea.value.trim();
+
+            if (postContent === '') {
+                alert('Please write a message before posting!');
+                return;
+            }
+
+            // Get the profile picture from the profile-card
+            const profileImgSrc = document.querySelector('.profile-card img').src;
+
+            const postContainer = document.createElement('div');
+            postContainer.classList.add('post');
+
+            postContainer.innerHTML = `
+                <div class="post-header">
+                    <img src="${profileImgSrc}" alt="User Profile">
+                    <strong>You</strong>
+                </div>
+                <p>${postContent}</p>
+            `;
+
+            const container = document.querySelector('.container');
+            container.insertBefore(postContainer, document.querySelector('.post-box').nextSibling);
+
+            textArea.value = '';
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="memories.html">Memories</a>
+        <a href="music.html">Music</a>
+        <a href="letter.html">Letter</a>
+    </nav>
+
+    <div class="container">
+        <div class="profile-card">
+            <img src="azi_profile.jpg" alt="Profile Picture">
+            <h1>Happy Anniversary,</h1>
+            <h1>My Love!</h1>
+            <p>Here is what happened to our year!</p>
+        </div>
+
+        <div class="post-box">
+            <textarea placeholder="Share a sweet message..."></textarea>
+            <button onclick="addPost()">Post</button>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>February 14, 2024</p>
+            <p>Our First Valentines Day together! I love that you really appreciate the first flower that I gave you.</p>
+            <div class="post-content" onclick="openModal('vday1.jpg')">
+                <img src="vday1.jpg" alt="Valentine's Day 2024">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>February 14, 2024</p>
+            <p>That one random night became one of the happiest days of my life. It was the night you said yes.</p>            
+            <div class="post-content" onclick="openModal('yes.png')">
+                <img src="yes.png" alt="The Day She Said Yes">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>March 19, 2024</p>
+            <p>Our first month! I know March has been tough for both of us, but we made it through together.</p>            
+            <div class="post-content" onclick="openModal('month1.jpg')">
+                <img src="month1.jpg" alt="Happy 1 Month">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>April 19, 2024</p>
+            <p>Our 2nd month together! I still remember when you're bashing my wrapping and ribbon taste haha.  </p>
+            <p>PS: Sorry if it's low quality photo hahaha. I just saved it from ig.</p>
+            <div class="post-content" onclick="openModal('month2.jpg')">
+                <img src="month2.jpg" alt="Happy 2 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>May 19, 2024</p>
+            <p>Our 2nd month together! Flowers are yumi approved and my wrapper and ribbon is improving</p>
+            <div class="post-content" onclick="openModal('month3.jpg')">
+                <img src="month3.jpg" alt="Happy 3 Months">
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>May 2024</p>
+            <p>Congrats on your Teknorampa journey! Proud of you.</p>
+            <div class="post-content" onclick="openModal('tekno.jpg')">
+                <img src="tekno.jpg" alt="Happy 3 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>June 19, 2024</p>
+            <p>Our 4nd month! First time to give you other kind of flowers and you love it!</p>
+            <div class="post-content" onclick="openModal('month4.jpg')">
+                <img src="month4.jpg" alt="Happy 4 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>July 19, 2024</p>
+            <p>Our 5th month! I'm really enjoying to mix and match flowers haha.</p>
+            <div class="post-content" onclick="openModal('month5.jpg')">
+                <img src="month5.jpg" alt="Happy 5 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>August 19, 2024</p>
+            <p>Happy 6 months, my love! Half year with you! You also love this flower right.</p>
+            <div class="post-content" onclick="openModal('month6.jpg')">
+                <img src="month6.jpg" alt="Happy 6 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>September 2024</p>
+            <p>It's virgoooo season. Happy Birthday, my love! I know our September monthsarry was a mess because im such a brat hehe.</p>
+            <div class="post-content" onclick="openModal('month7.jpg')">
+                <img src="month7.jpg" alt="Happy 7 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>October 19, 2024</p>
+            <p>Our 8th monthhhhh! The flowers are delayed but now my love from you. </p>
+            <div class="post-content" onclick="openModal('month8.jpg')">
+                <img src="month8.jpg" alt="Happy 8 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>November 19, 2024</p>
+            <p>Our 9th monthhh! I remember tita loves this flower right and its so pretty yey!</p>
+            <div class="post-content"  onclick="openModal('month9.jpg')">
+                <img src="month9.jpg" alt="Happy 9 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="images/miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>December 19, 2024</p>
+            <p>I know we are not in good terms last december and I was a jerk. I'm really sorry for that my love.</p>
+            <div class="post-content" onclick="openModal('month10.jpg')">
+                <img src="month10.jpg" alt="Happy 10 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>January 19, 2025</p>
+            <p>Happy 11 months, my love! I'm sorry if I don't have gift or flower for you for our 11th months. I know January was still hard for the both of us.</p>
+            <div class="post-content" onclick="openModal('cf1.jpg')">
+                <img src="cf1.jpg" alt="Happy 11 Months">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>February 14, 2025</p>
+            <p>Happy Valentine's Day, my forever Valentine! I feel so guilty that you didn’t get flowers this Valentine’s because we split the cost for your kikay stuffs. I promise to make it up to you soon once I've recovered financially from my gambling debt!</p>                
+            <div class="post-content" onclick="openModal('day2.jpg')">
+                <img src="vday2.jpg" alt="Happy Valentines 2025">
+            </div>
+        </div>
+        
+        <div class="post">
+            <div class="post-header">
+                <img src="miguel_profile.jpg" alt="User Profile">
+                <strong>Juan Miguel Lim</strong>
+            </div>
+            <p>February 19, 2025</p>
+            <p>Happy Anniversary, my love! No flowers this time, but a power bank instead—haha! From now on, I’ll start giving you gifts that are practical and useful. Let’s be practical this year. Here’s to many more years together!</p>            <div class="post-content">
+            <div class="post-content" onclick="openModal('month12.jpg')">
+                <img src="month12.jpg" alt="Happy Anniversary">
+            </div>
+        </div>
+        
+    </div>
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img id="modal-img" class="modal-content">
+    </div>
+    <script>
+        function openModal(src) {
+            document.getElementById("modal").style.display = "flex";
+            document.getElementById("modal-img").src = src;
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
+
